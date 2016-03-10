@@ -3,17 +3,16 @@
 namespace Core;
 
 class Model {
-	public $db;
+	private $db;
 	
-    function __construct() {
+    function __construct(Database $db) {
 		print_r(
 			array(
 				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__,
-				"title" => "class Controller\n"
+				"class" => __CLASS__
 			)
 		);
-		$this->db = new \Libs\Database();
+		$this->db = $db;
     }	
 }
 

@@ -1,10 +1,12 @@
 <?php
 
 namespace Controllers {
+	use Core\Controller;
 
-	class Projects {
+	class Projects extends Controller{
 		function __construct() {
-			echo 'DB is connected';
+			parent::__construct(__CLASS__);
+			echo 'Projects is connected';
 		}
 
 		public function show(array $page) {

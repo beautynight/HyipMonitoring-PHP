@@ -3,18 +3,18 @@
 namespace Core;
 
 class Controller {
-	public $model;
+	private $model;
 	
-    function __construct() {
+    function __construct($rrr) {
 		print_r(
 			array(
 				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__,
-				"title" => "class Controller\n"
+				"class" => __CLASS__
 			)
 		);
-		//$this->model = new '\Models\\'.__CLASS__();
-    }	
+		$modelClass = '\Models\\'.(new \ReflectionClass($this))->getShortName();
+		$this->model = new $modelClass();
+    }
 }
 
 ?>

@@ -9,8 +9,7 @@ class User extends Controller{
 		print_r(
 			array(
 				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__,
-				"title" => "class User extends Controller\n"
+				"class" => __CLASS__
 			)
 		);
 		parent::__construct();

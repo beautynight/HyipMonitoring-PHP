@@ -8,11 +8,10 @@ class Auth {
 		print_r(
 			array(
 				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__,
-				"title" => "class Auth\n"
+				"class" => __CLASS__
 			)
 		);
-		$this->db = $db;
+		//$this->db = $db;
 		//$this->model = new '\Models\\'.__CLASS__();
     }	
 }
