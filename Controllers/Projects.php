@@ -2,15 +2,16 @@
 
 namespace Controllers {
 	use Core\Controller;
+	use Core\Database;
 
 	class Projects extends Controller{
-		function __construct() {
-			parent::__construct(__CLASS__);
-			echo 'Projects is connected';
+		function __construct(Database $db) {
+			parent::__construct(__CLASS__, $db);
 		}
 
 		public function show(array $page) {
 			print_r($page);
+			$this->model->db->query('select * from project')->send()->getResult();
 		}
 	}
 

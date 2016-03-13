@@ -1,20 +1,21 @@
 <?php
 
-namespace Core;
+namespace Core {
 
-class Controller {
-	private $model;
-	
-    function __construct($rrr) {
-		print_r(
-			array(
-				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__
-			)
-		);
-		$modelClass = '\Models\\'.(new \ReflectionClass($this))->getShortName();
-		$this->model = new $modelClass();
-    }
-}
+	class Controller {
+		public $model;
 
-?>
+		function __construct($className, Database $db) {
+			/*print_r(
+				array(
+					"namespace" => __NAMESPACE__,
+					"class" => __CLASS__
+				)
+			);*/
+
+			$modelClass = '\Models\\'.(substr($className, strrpos($className, '\\') + 1));
+			$this->model = new $modelClass($db);
+		}
+	}
+
+}?>

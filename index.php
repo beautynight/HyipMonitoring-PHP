@@ -2,8 +2,9 @@
 namespace {
     echo '<pre>';
 //    define('DS', DIRECTORY_SEPARATOR);
-    error_reporting(E_ALL);
+    error_reporting(E_ALL | E_STRICT);
     ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
 
     spl_autoload_extensions(".php");
     spl_autoload_register(function ($className) {

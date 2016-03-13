@@ -1,6 +1,7 @@
 <?php
 
 namespace Core {
+    use Core\Database;
 
     class Router {
         private $defaultParams = 'Projects/show/1';
@@ -15,8 +16,8 @@ namespace Core {
         private $params;
 
         function __construct() {
-            $db     = new Database();
-            $auth   = new Auth($db);
+            $this->db   = new Database();
+            $auth       = new Auth($this->db);
 
             $this->getUri();
             $this->parseUri($this->uri);
@@ -42,7 +43,7 @@ namespace Core {
             $controllerClass = 'Controllers\\'.$this->controller;
 
             if(!file_exists($controllerClass.'.php')) { return false; }
-            $controller = new $controllerClass();
+            $controller = new $controllerClass($this->db);
 
             if (!is_callable(array($controller, $this->action))) { return false; }
             call_user_func_array(array($controller, $this->action), array($this->params));

@@ -3,15 +3,15 @@
 namespace Core;
 
 class Model {
-	private $db;
+	public $db;
 	
     function __construct(Database $db) {
-		print_r(
+		/*print_r(
 			array(
 				"namespace" => __NAMESPACE__,
 				"class" => __CLASS__
 			)
-		);
+		);*/
 		$this->db = $db;
     }	
 }

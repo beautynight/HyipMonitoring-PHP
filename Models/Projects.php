@@ -1,20 +1,24 @@
 <?php
 
-namespace Models;
+namespace Models {
 
-class Projects {
-	private $model;
+	use Core\Database;
+	use\Core\Model;
 
-	function __construct() {
-		print_r(
-			array(
-				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__
-			)
-		);
-		/*$modelClass = '\Models\\'.__CLASS__;
-		$this->model = new $modelClass();*/
+	class Projects extends Model{
+//		private $model;
+
+		function __construct(Database $db) {
+			/*print_r(
+				array(
+					"namespace" => __NAMESPACE__,
+					"class" => __CLASS__
+				)
+			);*/
+			parent::__construct($db);
+			/*$modelClass = '\Models\\'.__CLASS__;
+            $this->model = new $modelClass();*/
+		}
 	}
-}
 
-?>
+}?>
