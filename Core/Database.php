@@ -1,7 +1,6 @@
 <?php
 
 namespace Core {
-	use \SplString;
 	use \mysqli;
 
 	class Database {
@@ -12,16 +11,14 @@ namespace Core {
 
 		private $mysqli;
 		private $query = "";
-		private $con = false;
 		private $result;
-		private $nums = "";
 
 		function __construct() {
 			$this->mysqli = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
 			if($this->mysqli && !@mysqli_connect_errno()){
 				$this->mysqli->set_charset("utf8");
 				$this->mysqli->autocommit(false);
-				$this->query("SET collation_connection = utf8_general_ci;")->send();
+				$this->query("SET collation_connection = utf8_general_ci;")->execute();
 				return true;
 			}else{
 				array_push($this->result, $this->mysqli->connect_error);
@@ -34,19 +31,17 @@ namespace Core {
 			return $this;
 		}
 
-		public function send() {
+		public function execute() {
 			$this->result = $this->mysqli->query($this->query);
 			$this->query = '';
 			return $this;
 		}
 
 		public function getResult() {
-			$this->nums = 0;
 			if($this->result){
-				$this->nums = $this->mysqli->affected_rows;
-				for($i = 0; $i < $this->nums; $i++){
-					$r = @mysql_fetch_array($query);
-					$key = array_keys($r);
+				for($i = 0; $i < $this->mysqli->affected_rows; $i++){
+					$row = $this->mysqli->fetch_array();
+					$key = array_keys($row);
 					$count = count($key);
 					for($x = 0; $x < $count; $x++){
 						if(!is_int($key[$x])){

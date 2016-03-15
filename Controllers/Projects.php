@@ -11,7 +11,7 @@ namespace Controllers {
 
 		public function show(array $page) {
 			print_r($page);
-			$this->model->db->query('select * from project')->send()->getResult();
+			$this->model->query('select * from project');
 		}
 	}
 
