@@ -9,17 +9,9 @@ namespace Models {
 //		private $model;
 
 		function __construct(Database $db) {
-			/*print_r(
-				array(
-					"namespace" => __NAMESPACE__,
-					"class" => __CLASS__
-				)
-			);*/
 			parent::__construct($db);
-			/*$modelClass = '\Models\\'.__CLASS__;
-            $this->model = new $modelClass();*/
 
-            $this->db->add('select * from project');
+            $this->db->select('project', '*', null, null, 3);
 
             var_dump($this->db->getResult());
 		}
