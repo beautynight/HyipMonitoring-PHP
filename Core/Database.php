@@ -3,7 +3,7 @@
 namespace Core {
 	use \mysqli;
 
-	class Database {
+	class Database extends mysqli{
 		private $db_host = 'localhost';
 		private $db_user = 'test';
 		private $db_pass = '';
@@ -14,98 +14,65 @@ namespace Core {
 		private $result;
 
 		function __construct() {
-			$this->mysqli = new mysqli($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
-			if($this->mysqli && !@mysqli_connect_errno()){
-				$this->mysqli->set_charset("utf8");
-				$this->mysqli->autocommit(false);
-				$this->query("SET collation_connection = utf8_general_ci;")->execute();
+			parent::__construct($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+			if(!@mysqli_connect_errno()){
+				$this->set_charset("utf8");
+				$this->autocommit(false);
+				$this->query("SET collation_connection = utf8_general_ci;");
 				return true;
 			}else{
-				array_push($this->result, $this->mysqli->connect_error);
+				array_push($this->result, $this->connect_error);
 				return false;
 			}
 		}
 
-		public function query($sql) {
+		public function add($sql) {
 			$this->query .= $sql;
 			return $this;
 		}
 
 		public function execute() {
-			$this->result = $this->mysqli->query($this->query);
+			$this->result = $this->query($this->query);
 			$this->query = '';
 			return $this;
 		}
 
 		public function getResult() {
-			if($this->result){
-				for($i = 0; $i < $this->mysqli->affected_rows; $i++){
-					$row = $this->mysqli->fetch_array();
-					$key = array_keys($row);
-					$count = count($key);
-					for($x = 0; $x < $count; $x++){
-						if(!is_int($key[$x])){
-							$this->result[$i][$key[$x]] = $r[$key[$x]];
-						}
-					}
-				}
-			}
-			return ($this->result);
+            $this->execute();
+            return $this->result->fetch_all(MYSQLI_ASSOC);
 		}
 
-		public function sendQuery($sql) {
-			$this->result = array();
-			$this->nums = 0;
-			$query = @mysql_query($sql);
-			if($query){
-				$this->nums = @mysql_num_rows($query);
-				for($i = 0; $i < $this->nums; $i++){
-					$r = @mysql_fetch_array($query);
-					$key = array_keys($r);
-					$count = count($key);
-					for($x = 0; $x < $count; $x++){
-						if(!is_int($key[$x])){
-							$this->result[$i][$key[$x]] = $r[$key[$x]];
-						}
-					}
-				}
+		public function select($table, $fields = '*', $where = null, $order = null, $limit = null) {
+            $this->query .= 'SELECT '.$fields.' FROM '.$table;
+			if($where !== null){
+                $this->query .= ' WHERE '.$where;
 			}
-			return ($this->result);
-		}
-
-		public function select($table, $rows = '*', $where = null, $order = null, $limit = null) {
-			$q = 'SELECT '.$rows.' FROM '.$table;
-			if($where != null){
-				$q .= ' WHERE '.$where;
+			if($order !== null){
+                $this->query .= ' ORDER BY '.$order;
 			}
-			if($order != null){
-				$q .= ' ORDER BY '.$order;
+			if($limit !== null){
+                $this->query .= ' LIMIT '.$limit;
 			}
-			if($limit != null){
-				$q .= ' LIMIT '.$limit;
-			}
-			return ($this->query($q));
+			return $this;
 		}
 
 		public function insert($table, $params){
 			if (empty($params)) return -2;
-			@mysql_query('START TRANSACTION');
+			$this->begin_transaction();
 			$sql='INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('","', $params) . '")';
-			//$this->myQuery = $sql;
-			if(@mysql_query($sql)){
-				$last_id = @mysql_insert_id();
-				@mysql_query('COMMIT');
+			if($this->query($sql)){
+				$last_id = $this->insert_id;
+                $this->commit();
 				return $last_id;
 			}
 			else{
 				array_push($this->result, mysql_error());
-				@mysql_query('ROLLBACK');
+                $this->rollback();
 				return -1;
 			}
 		}
 
 		public function multiInsert($table, $fields, $params){
-			print_r($params);
 			if (empty($params) || !is_array($params)) return -2;
 			$cnt = count($params[0]);
 

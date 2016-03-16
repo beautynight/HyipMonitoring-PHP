@@ -18,6 +18,10 @@ namespace Models {
 			parent::__construct($db);
 			/*$modelClass = '\Models\\'.__CLASS__;
             $this->model = new $modelClass();*/
+
+            $this->db->add('select * from project');
+
+            var_dump($this->db->getResult());
 		}
 	}
 
