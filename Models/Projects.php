@@ -11,9 +11,9 @@ namespace Models {
 		function __construct(Database $db) {
 			parent::__construct($db);
 
-            $this->db->select('project', '*', null, null, 3);
+            /*$this->db->select('project', '*', null, null, 3);
 
-            var_dump($this->db->getResult());
+            var_dump($this->db->getResult());*/
 		}
 	}
 

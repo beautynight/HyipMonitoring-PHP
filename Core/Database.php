@@ -33,6 +33,12 @@ namespace Core {
 			return $this;
 		}
 
+		public function begin() {
+			$this->transaction_started = true;
+			$this->begin_transaction();
+			return $this;
+		}
+
 		public function execute() {
 			$this->result = $this->query($this->query);
 			if ($this->transaction_started) {
@@ -70,12 +76,6 @@ namespace Core {
 		public function insert($table, array $params){
 			if (empty($params)) $this->errors[] = -2;
 			$this->query .= 'INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('","', $params) . '")';
-			return $this;
-		}
-
-		public function begin() {
-			$this->transaction_started = true;
-			$this->begin_transaction();
 			return $this;
 		}
 

@@ -1,6 +1,5 @@
 <?php
 namespace {
-    echo '<pre>';
 //    define('DS', DIRECTORY_SEPARATOR);
     error_reporting(E_ALL | E_STRICT);
     ini_set('display_errors', 1);

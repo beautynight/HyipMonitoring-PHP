@@ -17,7 +17,7 @@ namespace Core {
 
         function __construct() {
             $this->db   = new Database();
-            $auth       = new Auth($this->db);
+//            $auth       = new Auth($this->db);
 
             $this->getUri();
             $this->parseUri($this->uri);
