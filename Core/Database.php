@@ -59,6 +59,14 @@ namespace Core {
             return $this->result->fetch_all(MYSQLI_ASSOC);
 		}
 
+		/**
+		 * @param $table
+		 * @param string $fields
+		 * @param null $where
+		 * @param null $order
+		 * @param null $limit
+         * @return Database $this
+         */
 		public function select($table, $fields = '*', $where = null, $order = null, $limit = null) {
             $this->query .= 'SELECT '.$fields.' FROM '.$table;
 			if($where !== null){

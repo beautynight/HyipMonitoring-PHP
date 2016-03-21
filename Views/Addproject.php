@@ -230,17 +230,16 @@
                     <!-- .section-divider -->
 
 					<div class="payments">
-                    <div class="section row">
-						<?php
-/*						  $db->query("select id, name from payments order by pos");
-						  $div = ceil($db->nums/3);
-						  foreach($db->result as $k => $v) {
-							if ($k%$div === 0) echo '<div class="col-md-4 pad-r40 border-right">';
-							echo '<label class="block mt15 option option-primary"><input type="checkbox" name="payment[]" value="'.$v['id'].'"><span class="checkbox"></span> <i class="pay pay-'.$v['name'].' mbn" ></i> '.$v['name'].'</label>';
-							if (($k+1)%$div === 0  ||  $k === $db->nums-1) echo '</div>';
-						  }
-						*/?>
-                    </div>
+						<div class="section row">
+							<?php
+							  $div = ceil(sizeof($this->payments)/3);
+							  foreach($this->payments as $k => $v) {
+								if ($k%$div === 0) echo '<div class="col-md-4 pad-r40 border-right">';
+								echo '<label class="block mt15 option option-primary"><input type="checkbox" name="payment[]" value="'.$v['id'].'"><span class="checkbox"></span> <i class="pay pay-'.$v['name'].' mbn" ></i> '.$v['name'].'</label>';
+								if (($k+1)%$div === 0  ||  $k === sizeof($this->payments)-1) echo '</div>';
+							  }
+							?>
+						</div>
                     </div>
 					
 					
@@ -262,34 +261,31 @@
                     <!-- .section-divider -->
 
 					<div class="langs">
-                    <div class="section row">
-						<?php
-/*						  $db->query("select id, name, own_name, flag from languages where pos is not null order by pos");
-						  $div = ceil($db->nums/3);
-						  foreach($db->result as $k => $v) {
-							if ($k%$div === 0) echo '<div class="col-md-4 pad-r40 border-right">';
-							echo '<label class="block mt15 option option-primary"><input type="checkbox" name="lang[]" value="'.$v['id'].'"><span class="checkbox"></span> <i class="flag flag-'.$v['flag'].'" ></i>'.$v['name']." ( {$v['own_name']} )".'</label>';
-							if (($k+1)%$div === 0  ||  $k === $db->nums-1) echo '</div>';
-						  }
-						*/?>
-                    </div>
-					
-					<div class="section row" hidden>
-						<?php
-/*						  $db->query("select id, name, own_name, flag from languages where pos is null order by name");
-						  $div = ceil($db->nums/3);
-						  foreach($db->result as $k => $v) {
-							if ($k%$div === 0) echo '<div class="col-md-4 pad-r40 border-right">';
-							echo '<label class="block mt15 option option-primary"><input type="checkbox" name="lang[]" value="'.$v['id'].'"><span class="checkbox"></span> <i class="flag flag-'.$v['flag'].'" ></i>'.$v['name']." ( {$v['own_name']} )".'</label>';
-							if (($k+1)%$div === 0  ||  $k === $db->nums-1) echo '</div>';
-						  }
-						*/?>
-                    </div>
-                    <div class="section">
-						<button type="button" class="button btn-primary showPrev"> Показать все языки </button>
+						<div class="section row">
+							<?php
+							  $div = ceil(sizeof($this->languages)/3);
+							  foreach($this->languages as $k => $v) {
+								if ($k%$div === 0) echo '<div class="col-md-4 pad-r40 border-right">';
+								echo '<label class="block mt15 option option-primary"><input type="checkbox" name="lang[]" value="'.$v['id'].'"><span class="checkbox"></span> <i class="flag flag-'.$v['flag'].'" ></i>'.$v['name']." ( {$v['own_name']} )".'</label>';
+								if (($k+1)%$div === 0  ||  $k === sizeof($this->languages)-1) echo '</div>';
+							  }
+							?>
+						</div>
+
+						<div class="section row" hidden>
+							<?php
+							$div = ceil(sizeof($this->hidden_languages)/3);
+							  foreach($this->hidden_languages as $k => $v) {
+								if ($k%$div === 0) echo '<div class="col-md-4 pad-r40 border-right">';
+								echo '<label class="block mt15 option option-primary"><input type="checkbox" name="lang[]" value="'.$v['id'].'"><span class="checkbox"></span> <i class="flag flag-'.$v['flag'].'" ></i>'.$v['name']." ( {$v['own_name']} )".'</label>';
+								if (($k+1)%$div === 0  ||  $k === sizeof($this->hidden_languages)-1) echo '</div>';
+							  }
+							?>
+						</div>
+						<div class="section">
+							<button type="button" class="button btn-primary showPrev"> Показать все языки </button>
+						</div>
 					</div>
-					
-					</div>-->
 
 					
 

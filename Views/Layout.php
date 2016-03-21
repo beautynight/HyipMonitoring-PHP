@@ -1964,30 +1964,6 @@ function startAllNeedFunctions() {
 	}
 };
 </script>
-  
-  <!-- END: PAGE SCRIPTS -->
- 
-  <!-- FileUpload Plugin
-  <script src="vendor/plugins/fileupload/fileupload.js"></script>
-  <script src="vendor/plugins/holder/holder.min.js"></script> -->
-  
-  
-  <!--<script type="text/javascript">
-                  (function () {
-                      var po = document.createElement('script');
-                      po.type = 'text/javascript';
-                      po.async = true;
-                      po.src = 'https://apis.google.com/js/plusone.js';
-                      var s = document.getElementsByTagName('script')[0];
-                      s.parentNode.insertBefore(po, s);
-                  })();
-              </script>-->
-
-
-<?php 
-	if (file_exists ($page.'_footer.php')) require_once $page.'_footer.php';
-?>
-  <!-- END: PAGE SCRIPTS -->
 
 </body>
 

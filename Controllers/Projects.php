@@ -24,7 +24,10 @@ namespace Controllers {
 
 			echo (new View('Addproject', ['aaa' => 'a', 'bbb' => 'b']))->get();*/
 
-			echo (new View('Addproject', ['aaa' => 'a', 'bbb' => 'b']))->get();
+			$payments  = $this->model->db->select('payments', 'id, name', null, 'pos')->getResult();
+			$languages = $this->model->db->select('languages', 'id, name, own_name, flag', 'pos is not null', 'pos')->getResult();
+			$hidden_languages = $this->model->db->select('languages', 'id, name, own_name, flag', 'pos is null', 'name')->getResult();
+			echo (new View('Addproject', ['payments' => $payments, 'languages' => $languages, 'hidden_languages' => $hidden_languages]))->get();
 
 			//$this->model->query('select * from project');
 		}
