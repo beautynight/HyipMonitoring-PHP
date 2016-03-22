@@ -224,10 +224,9 @@
 					
 					
 
-					<!--<div class="section-divider mt40 mb25">
+					<div class="section-divider mt40 mb25">
                       <span> Платёжные системы </span>
                     </div>
-                    <!-- .section-divider -->
 
 					<div class="payments">
 						<div class="section row">

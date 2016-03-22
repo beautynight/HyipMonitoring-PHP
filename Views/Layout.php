@@ -24,28 +24,28 @@
 	ДОБАВИТЬ CloudFlare
 -->
 <!-- <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>-->
-<link rel="stylesheet" type="text/css" href="vendor/plugins/fullcalendar/fullcalendar.min.css">
-<link rel="stylesheet" type="text/css" href="resources/google/fonts.css">
-<!--<link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.cssgz">-->
-<link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
-<link rel="stylesheet" type="text/css" href="vendor/plugins/cropper/cropper.css">
-<link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.min.css">
-<link rel="stylesheet" type="text/css" href="assets/fonts/glyphicons-pro/glyphicons-pro.css">
-<link rel="stylesheet" type="text/css" href="assets/flags/flags.css">
-<link rel="stylesheet" type="text/css" href="assets/payments/payments.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/fullcalendar/fullcalendar.min.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/google/fonts.css">
+<!--<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/skin/default_skin/css/theme.cssgz">-->
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/default_skin/css/theme.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/cropper/cropper.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/admin-forms/css/admin-forms.min.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/glyphicons-pro/glyphicons-pro.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/flags/flags.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/payments/payments.css">
   
 <!-- для работы с картинками-->
-<link rel="stylesheet" type="text/css" href="vendor/plugins/magnific/magnific-popup.css">
+<link rel="stylesheet" type="text/css" href="<?=SITE;?>assets/magnific/magnific-popup.css">
   
 
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="assets/img/favicon.ico">
+  <link rel="shortcut icon" href="<?=SITE;?>assets/favicon.ico">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <script src="<?=SITE;?>assets/js/3.7.0/html5shiv.js"></script>
+  <script src="<?=SITE;?>assets/js/respond.min.js"></script>
 <![endif]-->
 
 </head>
@@ -527,7 +527,7 @@
                         <div class="media">
                           <div class="media-left">
                             <a href="#">
-                              <img class="media-object" alt="64x64" src="assets/img/avatars/3.jpg">
+                              <img class="media-object" alt="64x64" src="<?=SITE;?>assets/img/avatars/3.jpg">
                             </a>
                           </div>
                           <div class="media-body">
@@ -546,14 +546,14 @@
                           </div>
                           <div class="media-right">
                             <a href="#">
-                              <img class="media-object" alt="64x64" src="assets/img/avatars/1.jpg">
+                              <img class="media-object" alt="64x64" src="<?=SITE;?>assets/img/avatars/1.jpg">
                             </a>
                           </div>
                         </div>
                         <div class="media">
                           <div class="media-left">
                             <a href="#">
-                              <img class="media-object" alt="64x64" src="assets/img/avatars/2.jpg">
+                              <img class="media-object" alt="64x64" src="<?=SITE;?>assets/img/avatars/2.jpg">
                             </a>
                           </div>
                           <div class="media-body">
@@ -572,14 +572,14 @@
                           </div>
                           <div class="media-right">
                             <a href="#">
-                              <img class="media-object" alt="64x64" src="assets/img/avatars/1.jpg">
+                              <img class="media-object" alt="64x64" src="<?=SITE;?>assets/img/avatars/1.jpg">
                             </a>
                           </div>
                         </div>
                         <div class="media">
                           <div class="media-left">
                             <a href="#">
-                              <img class="media-object" alt="64x64" src="assets/img/avatars/2.jpg">
+                              <img class="media-object" alt="64x64" src="<?=SITE;?>assets/img/avatars/2.jpg">
                             </a>
                           </div>
                           <div class="media-body">
@@ -598,7 +598,7 @@
                           </div>
                           <div class="media-right">
                             <a href="#">
-                              <img class="media-object" alt="64x64" src="assets/img/avatars/1.jpg">
+                              <img class="media-object" alt="64x64" src="<?=SITE;?>assets/img/avatars/1.jpg">
                             </a>
                           </div>
                         </div>
@@ -606,7 +606,7 @@
                       <div id="nav-tab3" class="tab-pane scroller-nm" role="tabpanel">
                         <ul class="media-list" role="menu">
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/5.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/5.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading">Article
                                 <small class="text-muted">- 08/16/22</small>
@@ -615,7 +615,7 @@
                             </div>
                           </li>
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/2.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/2.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading mv5">Article
                                 <small> - 08/16/22</small>
@@ -625,7 +625,7 @@
                             </div>
                           </li>
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/3.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/3.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading">Article
                                 <small class="text-muted">- 08/16/22</small>
@@ -634,7 +634,7 @@
                             </div>
                           </li>
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/4.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/4.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading mv5">Article
                                 <small class="text-muted">- 08/16/22</small>
@@ -643,7 +643,7 @@
                             </div>
                           </li>
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/5.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/5.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading">Article
                                 <small class="text-muted">- 08/16/22</small>
@@ -652,7 +652,7 @@
                             </div>
                           </li>
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/2.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/2.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading mv5">Article
                                 <small> - 08/16/22</small>
@@ -662,7 +662,7 @@
                             </div>
                           </li>
                           <li class="media">
-                            <a class="media-left" href="#"> <img src="assets/img/avatars/3.jpg" class="mw40" alt="avatar"> </a>
+                            <a class="media-left" href="#"> <img src="<?=SITE;?>assets/img/avatars/3.jpg" class="mw40" alt="avatar"> </a>
                             <div class="media-body">
                               <h5 class="media-heading">Article
                                 <small class="text-muted">- 08/16/22</small>
@@ -774,7 +774,7 @@
         </li>
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
-          	<img src="assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
+          	<img src="<?=SITE;?>assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
           	<span class="hidden-xs pl15"> Michael .R </span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
@@ -858,7 +858,7 @@
           <div class="sidebar-widget author-widget">
             <div class="media">
               <a class="media-left" href="#">
-                <img src="assets/img/avatars/3.jpg" class="img-responsive">
+                <img src="<?=SITE;?>assets/img/avatars/3.jpg" class="img-responsive">
               </a>
               <div class="media-body">
                 <div class="media-links">
@@ -1675,35 +1675,35 @@
   <!-- ### ### ### ### ### ### 		ПО УМОЛЧАНИЮ -->
   
   <!-- jQuery -->
-  <script src="vendor/jquery/jquery-1.12.0.min.js"></script>
-  <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+  <script src="<?=SITE;?>assets/jquery/jquery-1.12.0.min.js"></script>
+  <script src="<?=SITE;?>assets/jquery/jquery-ui.min.js"></script>
   <!--<script src="vendor/plugins/tagsinput/tagsinput.min.js"></script>-->
 
   <!-- Theme Javascript -->
-  <script src="assets/js/utility/utility.js"></script>
-  <script src="assets/js/demo/demo.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="<?=SITE;?>assets/js/utility.js"></script>
+  <script src="<?=SITE;?>assets/js/demo.js"></script>
+  <script src="<?=SITE;?>assets/js/main.js"></script>
   
   
   
   <!-- ДОБАВЛЕННЫЕ МНОЮ -->
   
   <!-- jQuery -->
-  <script src="vendor/plugins/magnific/jquery.magnific-popup.js"></script>
+  <script src="<?=SITE;?>assets/magnific/jquery.magnific-popup.js"></script>
   
   <!-- HighCharts Plugin -->
-  <script src="vendor/plugins/highcharts/highcharts.js"></script>
+  <script src="<?=SITE;?>assets/js/highcharts.js"></script>
   
   <!-- FullCalendar Plugin + moment Dependency -->
-  <script src="vendor/plugins/fullcalendar/lib/moment.min.js"></script>
+  <script src="<?=SITE;?>assets/fullcalendar/lib/moment.min.js"></script>
   <!--<script src="vendor/plugins/fullcalendar/fullcalendar.min.js"></script>-->
   
   <!-- Widget Javascript -->
-  <script src="assets/js/demo/widgets.js"></script>
-  <script src="vendor/plugins/cropper/cropper.js"></script>
+  <script src="<?=SITE;?>assets/js/widgets.js"></script>
+  <script src="<?=SITE;?>assets/cropper/cropper.js"></script>
     
   
-  <script src="vendor/jquery/my-addons.js"></script>
+  <script src="<?=SITE;?>assets/js/my-addons.js"></script>
 
   
   
