@@ -9,9 +9,7 @@ namespace Core {
 		private $db_pass = '';
 		private $db_name = 'test';
 
-		private $query = "";
-		private $transaction_started = false;
-		private $result;
+		private $queries = [];
 		private $errors = [];
 
 		function __construct() {
@@ -22,89 +20,107 @@ namespace Core {
 				$this->query("SET collation_connection = utf8_general_ci;");
 				return true;
 			}else{
-				$this->errors[] = -1;
-				array_push($this->result, $this->connect_error);
 				return false;
 			}
 		}
 
 		public function add($sql) {
-			$this->query .= $sql;
-			return $this;
-		}
-
-		public function begin() {
-			$this->transaction_started = true;
-			$this->begin_transaction();
-			return $this;
+			$this->queries[] = $sql;
 		}
 
 		public function execute() {
-			$this->result = $this->query($this->query);
-			if ($this->transaction_started) {
-				if (!empty($this->errors) || $this->error !== '') $this->rollback();
-				else $this->commit();
-				$this->transaction_started = false;
+			if ($this->errors) {
+				$this->errors = [];
+				$this->queries = [];
+				return false;
 			}
-			$this->query = '';
-			return $this;
+
+			$error = false;
+			$this->begin_transaction();
+			foreach ($this->queries as $query) {
+				if (!$this->query($query)) {
+					$error = true;
+					break;
+				}
+			}
+			$this->queries = [];
+			if ($error) {
+				$this->rollback();
+				return false;
+			}
+			else {
+				$this->commit();
+				return true;
+			}
 		}
 
-		public function free() {
-			$this->errors = [];
-		}
-
-		public function getResult() {
-            $this->execute();
-            return $this->result->fetch_all(MYSQLI_ASSOC);
+		public function getResult($sql) {
+			return $this->query($sql)->fetch_all(MYSQLI_ASSOC);
 		}
 
 		/**
-		 * @param $table
+		 * @param string $table
 		 * @param string $fields
-		 * @param null $where
-		 * @param null $order
-		 * @param null $limit
+		 * @param string $where
+		 * @param string $order
+		 * @param string $limit
          * @return Database $this
          */
 		public function select($table, $fields = '*', $where = null, $order = null, $limit = null) {
-            $this->query .= 'SELECT '.$fields.' FROM '.$table;
+            $q = 'SELECT '.$fields.' FROM '.$table;
 			if($where !== null){
-                $this->query .= ' WHERE '.$where;
+                $q .= ' WHERE '.$where;
 			}
 			if($order !== null){
-                $this->query .= ' ORDER BY '.$order;
+                $q .= ' ORDER BY '.$order;
 			}
 			if($limit !== null){
-                $this->query .= ' LIMIT '.$limit;
+                $q .= ' LIMIT '.$limit;
 			}
-			return $this;
+			return $this->getResult($q);
+		}
+
+		public function lastID($table) {
+			$q = 'SELECT max(id) as id FROM '.$table;
+			return $this->getResult($q)[0]['id'];
 		}
 
 		public function insert($table, array $params){
 			if (empty($params)) $this->errors[] = -2;
-			$this->query .= 'INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES ("' . implode('","', $params) . '")';
+			$this->add('INSERT INTO `'.$table.'` (`'.implode('`, `',array_keys($params)).'`) VALUES (' . implode(',', $this->makeQuotes($params)) . ')');
 			return $this;
 		}
 
-		public function multiInsert($table, $fields, array $params){
-			if (empty($params) || !is_array($params)) $this->errors[] = -2;
-			$cnt = count($params[0]);
+		/**
+		 * @param string $table
+		 * @param array $fields
+		 * @param array $data
+		 * @return Database $this
+         */
+		public function multiInsert($table, array $fields, array $data){
+			if (empty($data) || !is_array($data)) {
+				$this->errors = -2;
+				return $this;
+			}
 
-			foreach($params as $k => $v) {
-				if (!is_array($v) || count($v) !== $cnt) $this->errors[] = -3;
+			// check count of values
+			$cnt = count($data[0]);
+			foreach($data as $k => $v) {
+				if (!is_array($v) || count($v) !== $cnt) {
+					$this->errors = -3;
+					return $this;
+				}
 			}
 
 			// Rotate array
-			array_unshift($params, null);
-			$params = call_user_func_array("array_map", $params);
+			array_unshift($data, null);
+			$data = call_user_func_array('array_map', $data);
 
-			$arr = [];
-			foreach($params as $k => $v) {
-				$arr[] = '("' . implode('","', $v) . '")';
+			foreach($data as &$v) {
+				$v = '(' . implode(',', $this->makeQuotes($v)) . ')';
 			}
 
-			$this->query .= 'INSERT INTO `'.$table.'` (`'.implode('`,`',$fields).'`) VALUES'.implode(',', $arr);
+			$this->add('INSERT INTO `'.$table.'` (`'.implode('`,`',$fields).'`) VALUES'.implode(',', $data));
 			return $this;
 		}
 
@@ -113,8 +129,22 @@ namespace Core {
 			foreach($params as $field=>$value) {
 				$args[] = $field.'="'.$value.'"';
 			}
-			$this->query .= 'UPDATE '.$table.' SET '.implode(',',$args).' WHERE '.$where;
+			$this->add('UPDATE '.$table.' SET '.implode(',',$args).' WHERE '.$where);
 			return $this;
+		}
+
+		/**
+		 * Add quotes to values and
+		 * Don't change declared variables
+		 * @param array $ar
+		 * @return array
+		 */
+		private function makeQuotes(array &$ar) {
+			return array_map(
+				function($a){
+					return strpos($a, "@") === 0 ? $a : '"'.$a.'"';
+				}, $ar
+			);
 		}
 	}
 

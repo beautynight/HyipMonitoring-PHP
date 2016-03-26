@@ -2,16 +2,18 @@
 <html>
 <head>  
 	<script>
-	var refreshAllowed = false;
-	var scripts=['panelScrollerInit'];
-	Array.prototype.addOne = function(el) {
-		o:for (var i in el) {
-			for(var j in this) {
-				if (el[i] == this[j]) continue o;
-			}
-			this.push(el[i]);
-		}
-	};
+      const SITE = '<?=SITE;?>';
+
+      var refreshAllowed = false;
+      var scripts=['panelScrollerInit'];
+      Array.prototype.addOne = function(el) {
+          o:for (var i in el) {
+              for(var j in this) {
+                  if (el[i] == this[j]) continue o;
+              }
+              this.push(el[i]);
+          }
+      };
 	</script>
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
