@@ -777,54 +777,45 @@
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
           	<img src="<?=SITE;?>assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64">
-          	<span class="hidden-xs pl15"> Michael .R </span>
+          	<span class="hidden-xs pl15"> Гость </span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
-          <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
+          <ul class="dropdown-menu list-group dropdown-persist w350" role="menu">
             <li class="dropdown-header clearfix">
-              <div class="pull-left ml10">
-                <select id="user-status">
-                  <optgroup label="Current Status:">
-                    <option value="1-1">Away</option>
-                    <option value="1-2">Offline</option>
-                    <option value="1-3" selected="selected">Online</option>
-                  </optgroup>
-                </select>
-              </div>
+              <div class="admin-form theme-primary w300 center-block">
 
-              <div class="pull-right mr10">
-                <select id="user-role">
-                  <optgroup label="Logged in As:">
-                    <option value="1-1">Client</option>
-                    <option value="1-2">Editor</option>
-                    <option value="1-3" selected="selected">Admin</option>
-                  </optgroup>
-                </select>
+
+                <div class="section row mb5">
+                  <label class="field prepend-icon">
+                    <input placeholder="Логин или Email" class="gui-input onlyText" name="login">
+                    <label class="field-icon">
+                      <i class="glyphicons glyphicons-user"></i>
+                    </label>
+                  </label>
+                </div>
+
+
+
+                <div class="section row mb5">
+                  <label class="field prepend-icon">
+                    <input placeholder="Пароль" class="gui-input onlyText" name="password" type="password">
+                    <label class="field-icon">
+                      <i class="fa fa-lock"></i>
+                    </label>
+                  </label>
+                </div>
+
+
+
+                <div class="section row mb5">
+                  <div class="pull-left">
+                    <button type="button" class="btn  btn-sm btn-info btn-block w125">Вход</button></div>
+
+                  <div class="pull-right">
+                    <button type="button" class="btn  btn-sm btn-success btn-block w125">Регистрация</button>
+                  </div>
+                </div>
               </div>
-            </li>
-            <li class="list-group-item">
-              <a href="#" class="animated animated-short fadeInUp">
-                <span class="fa fa-envelope"></span> Messages
-                <span class="label label-warning">2</span>
-              </a>
-            </li>
-            <li class="list-group-item">
-              <a href="#" class="animated animated-short fadeInUp">
-                <span class="fa fa-user"></span> Friends
-                <span class="label label-warning">6</span>
-              </a>
-            </li>
-            <li class="list-group-item">
-              <a href="#" class="animated animated-short fadeInUp">
-                <span class="fa fa-bell"></span> Notifications </a>
-            </li>
-            <li class="list-group-item">
-              <a href="#" class="animated animated-short fadeInUp">
-                <span class="fa fa-gear"></span> Settings </a>
-            </li>
-            <li class="dropdown-footer">
-              <a href="#" class="">
-              <span class="fa fa-power-off pr5"></span> Logout </a>
             </li>
           </ul>
         </li>
@@ -855,21 +846,6 @@
 
         <!-- Start: Sidebar Header -->
         <header class="sidebar-header">
-
-          <!-- Sidebar Widget - Author -->
-          <div class="sidebar-widget author-widget">
-            <div class="media">
-              <a class="media-left" href="#">
-                <img src="<?=SITE;?>assets/img/avatars/3.jpg" class="img-responsive">
-              </a>
-              <div class="media-body">
-                <div class="media-links">
-                   <a href="#" class="sidebar-menu-toggle">User Menu -</a> <a href="pages_login(alt).html">Logout</a>
-                </div>
-                <div class="media-author">Michael Richards</div>
-              </div>
-            </div>
-          </div>
 
           <!-- Sidebar Widget - Menu (slidedown) -->
           <div class="sidebar-widget menu-widget">
