@@ -4,15 +4,9 @@ namespace Core;
 #TODO Написать класс Auth
 class Auth {
 	private $db;
+	public $isAuthorized = true;
     function __construct(Database $db) {
-		print_r(
-			array(
-				"namespace" => __NAMESPACE__,
-				"class" => __CLASS__
-			)
-		);
-		//$this->db = $db;
-		//$this->model = new '\Models\\'.__CLASS__();
+		$this->db = $db;
     }	
 }
 

@@ -2,6 +2,7 @@
 
 namespace Core {
     use Core\Database;
+    use Core\Auth;
 
     class Router {
         private $defaultParams = 'Projects/show/1';
@@ -17,7 +18,7 @@ namespace Core {
 
         function __construct() {
             $this->db   = new Database();
-//            $auth       = new Auth($this->db);
+            $this->auth = new Auth($this->db);
 
             $this->getUri();
             $this->parseUri($this->uri);
@@ -36,17 +37,17 @@ namespace Core {
             $uri                = explode('/', strtolower(trim($uri,'/')));
             $this->controller   = count($uri) ? ucfirst(array_shift($uri)) : '';
             $this->action       = count($uri) ? array_shift($uri) : '';
-            $this->params       = count($uri) ? $uri : array();
+            $this->params       = count($uri) ? $uri : [];
         }
 
         private function route() {
             $controllerClass = 'Controllers\\'.$this->controller;
 
             if(!file_exists($controllerClass.'.php')) { return false; }
-            $controller = new $controllerClass($this->db);
+            $controller = new $controllerClass($this->db, $this->auth);
 
-            if (!is_callable(array($controller, $this->action))) { return false; }
-            call_user_func_array(array($controller, $this->action), array($this->params));
+            if (!is_callable([$controller, $this->action])) { return false; }
+            call_user_func_array([$controller, $this->action], [$this->params]);
 
             return true;
         }

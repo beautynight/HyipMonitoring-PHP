@@ -31,15 +31,18 @@ namespace Core {
 			return '';
 		}
 
-		public function get() {
-			if($this->isLayout) {
+		/*public function get() {
+			if($this->isLayout || isset($_POST['ajax'])) {
 				return $this->pageView;
 			}
 			else {
 				return (new View(self::LAYOUT, ['content' => $this->pageView]))->get();
 			}
-		}
+		}*/
 
+		public function get() {
+			return $this->pageView;
+		}
 	}
 
 }?>

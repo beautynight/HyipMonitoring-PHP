@@ -6,13 +6,13 @@ namespace Models {
 	use Core\Model;
 	use Libraries\File;
 
-	class Projects extends Model{
+	class Users extends Model{
 
 		function __construct(Database $db) {
 			parent::__construct($db);
 		}
 
-		public function saveProject(array $post) {
+		/*public function saveProject(array $post) {
 			$data = [
 				'name' 			=> $post['projectname'],
 				'admin' 		=> 1,
@@ -91,15 +91,8 @@ namespace Models {
 				$file->save($post['thumb_data'], true);
 
 			}
-		}
 
-		public function getData() {
-			return [
-				'payments'  => $this->db->select('payments', 'id, name', null, 'pos'),
-				'languages' => $this->db->select('languages', 'id, name, own_name, flag', 'pos is not null', 'pos'),
-				'hidden_languages' => $this->db->select('languages', 'id, name, own_name, flag', 'pos is null', 'name')
-			];
-		}
+		}*/
 	}
 
 }?>
