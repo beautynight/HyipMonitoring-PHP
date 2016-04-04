@@ -11,6 +11,7 @@ namespace {
     });
 
     new Core\Router();
+	var_dump('test');
 }
 
 
